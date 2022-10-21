@@ -1,0 +1,148 @@
+<html>
+<head>
+  <title> === Wowjoy EagleEyes === </title>
+  <link rel="stylesheet" href="{{ static_url("bootstrap/css/bootstrap.min.css")}}" type="text/css" />
+  <link rel="stylesheet" href="{{ static_url("font-awesome/css/font-awesome.min.css")}}" type="text/css /">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      
+      <div class="page-header">
+	    <h1 style="text-align:center"> === Wowjoy EagleEyes === </h1>
+	  </div>
+    
+      <div class="col-md-6 col-md-offset-3" id="search-input">
+		<div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+		    <ul id="myTabs" class="nav nav-tabs" role="tablist">
+		      <li role="presentation" class="active">
+		      	<a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">问句检索</a>
+		      	</li>
+		      <li role="presentation" class="">
+		      	<a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">字段检索</a>
+		      </li>
+		    </ul>
+
+		    <br/><br/>
+		    <div id="myTabContent" class="tab-content">
+		      <!-- 问句搜索 -->
+		      <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+		        <form action="./search" method="get" onsubmit="return check()">
+		          <div></div>
+		          <div class="input-group input-group-lg">
+		            <input type="text" id="inputtext" class="form-control" name="question" autofocus/>
+					<span class="input-group-btn">
+				        <button class="btn btn-default" type="button">Go!</button>
+				    </span>
+		          </div>
+		        </form>
+		      </div>
+		      
+		      <!-- 字段检索 -->
+		      <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+				<div class="input-group-add"> </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+    </div>
+  </div>
+
+  <script src="{{ static_url("jquery/jquery-1.11.3.min.js") }}"></script>
+  <script src="{{ static_url("bootstrap/js/bootstrap.min.js") }}"></script>
+  
+  <script>
+    function check(){
+      var name = document.getElementById("inputtext").value;
+      if(name == "")
+        return false;
+    }
+    
+    $('#myTabs a').click(function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	})
+	
+	    $(function() {  
+    $.fn.initInputGroup = function (options) {  
+        //1.Settings 初始化设置  
+        var c = $.extend({  
+            'widget' : 'input',  
+            'add' : "<span class=\"glyphicon glyphicon-plus\"></span>",  
+            'del' : "<span class=\"glyphicon glyphicon-minus\"></span>"  
+        }, options);  
+  
+        var _this = $(this);  
+  
+        //添加序号为1的输入框组  
+        addInputGroup(1);  
+  
+        function addInputGroup(order) {  
+            //1.创建输入框组  
+            var inputGroup = $("<div class='input-group input-group-lg'></div><br/>");  
+            //2.输入框组的序号  
+            var inputGroupAddon1 = $("<span class='input-group-addon'></span>");  
+            //3.设置输入框组的序号  
+            inputGroupAddon1.html(" " + order + " ");  
+
+            var chooseBtn = $("<div class='input-group-btn'>" + 
+			                  "<button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>症状 <span class='caret'></span></button>" +
+			                  "<ul class='dropdown-menu'>" + 
+			                  "<li><a href='#'>疾病</a></li>" +
+			                  "<li><a href='#'>症状</a></li>" +
+			                  "</ul></div>");
+
+  
+            //4.创建输入框组中的输入控件（input或textarea）  
+            var widget = '', inputGroupAddon2;  
+            if(c.widget == 'textarea') {  
+                widget = $("<textarea class='form-control' style='resize: vertical;'></textarea>");  
+                inputGroupAddon2 = $("<span class='input-group-addon'></span>");  
+            } else if(c.widget == 'input') {  
+                widget = $("<input class='form-control' type='text'/> ");  
+                inputGroupAddon2 = $("<span class='input-group-btn'></span>");  
+            }  
+  
+            //5.创建输入框组中最后面的操作按钮  
+            var addBtn = $("<button class='btn btn-default' type='button'>" + c.add + "</button>");  
+            addBtn.appendTo(inputGroupAddon2).on('click', function() {  
+                //6.响应删除和添加操作按钮事件  
+                if($(this).html() == c.del) {  
+                    $(this).parents('.input-group').remove();  
+                } else if($(this).html() == c.add) {  
+                    $(this).html(c.del);  
+                    addInputGroup(order+1);  
+                }  
+                //7.重新排序输入框组的序号  
+                resort();  
+            });  
+  
+            // inputGroup.append(inputGroupAddon1).append(widget).append(inputGroupAddon2);  
+  			inputGroup.append(chooseBtn).append(widget).append(inputGroupAddon2);  
+            _this.append(inputGroup);  
+        }  
+  
+        function resort() {  
+            var child = _this.children();  
+            $.each(child, function(i) {  
+                $(this).find(".input-group-addon").eq(0).html(' ' + (i + 1) + ' ');  
+            });  
+        }  
+    }  
+});  
+
+        $(function() {  
+            $('.input-group-add').initInputGroup({  
+                // 'widget' : 'textarea', //输入框组中间的空间类型  
+                'widget' : 'input'
+                //'add' : '添加',  
+                //'del' : '删除'  
+            });  
+        }); 
+  </script>
+</body>
+</html>
