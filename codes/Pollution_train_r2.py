@@ -1,7 +1,7 @@
 """
 Create on May 21,2020
 
-@author:nannan.sun@wowjoy.cn
+@author:nannan.sun
 
 Function:
 
