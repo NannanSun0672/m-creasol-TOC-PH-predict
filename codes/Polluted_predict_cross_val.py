@@ -134,13 +134,6 @@ class Polluted_predict(object):
         grid_search.fit(self.x, self.y_pH)
         print(grid_search.cv_results_)
         #clf.fit(self.X, self.y)
-
-
-
-
-
-
-
     def data_Trans(self):
         """
         1.转换 DataFrame
@@ -195,9 +188,6 @@ class Polluted_predict(object):
         #print(data_dict)
         data_frame = pd.DataFrame(data_dict)
         #print(data_frame)
-        data_frame.to_excel("/Users/sunnannan/Desktop/污水/数据.xlsx")
-
-
-
+        data_frame.to_excel("./Data/数据.xlsx")
 if __name__ == "__main__":
     Polluted_predict = Polluted_predict()
