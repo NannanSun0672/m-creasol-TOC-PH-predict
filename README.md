@@ -1,18 +1,15 @@
 # m-creasol-TOC-PH-predict
-Polluted water
-Predicting m-creasol,TOC, and PH
+## Polluted water, Predicting m-creasol,TOC, and PH
 
-1. Models
+## Models
 
---Ridge regression 
+* Ridge regression 
+* Lasso regression
+* ANN
 
--- Lasso regression
+## Evaluation Strategy
+* R2-score
 
--- ANN
-
-2. Evaluation Strategy
-
--- R2-score
 
 
 
